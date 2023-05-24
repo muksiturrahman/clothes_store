@@ -1,17 +1,18 @@
-import 'package:clothes_store/users/auth/signup_screen.dart';
+import 'package:clothes_store/users/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   var formKey = GlobalKey<FormState>();
+  var nameController = TextEditingController();
   var emailController = TextEditingController();
   var passController = TextEditingController();
   var isObSecure = true.obs;
@@ -33,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width,
                       height: 285,
-                      child: Image.asset('assets/images/login.jpg'),
+                      child: Image.asset('assets/images/register.jpg'),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
@@ -60,6 +61,56 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: Column(
                                   children: [
                                     TextFormField(
+                                      controller: nameController,
+                                      validator: (value) => value == ""
+                                          ? "Please write name"
+                                          : null,
+                                      decoration: InputDecoration(
+                                        prefixIcon: Icon(
+                                          Icons.person,
+                                          color: Colors.black,
+                                        ),
+                                        hintText: "name...",
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(30),
+                                          borderSide: BorderSide(
+                                            color: Colors.white60,
+                                          ),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(30),
+                                          borderSide: BorderSide(
+                                            color: Colors.white60,
+                                          ),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(30),
+                                          borderSide: BorderSide(
+                                            color: Colors.white60,
+                                          ),
+                                        ),
+                                        disabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(30),
+                                          borderSide: BorderSide(
+                                            color: Colors.white60,
+                                          ),
+                                        ),
+                                        contentPadding: EdgeInsets.symmetric(
+                                          horizontal: 14,
+                                          vertical: 6,
+                                        ),
+                                        fillColor: Colors.white,
+                                        filled: true,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 18,
+                                    ),
+                                    TextFormField(
                                       controller: emailController,
                                       validator: (value) => value == ""
                                           ? "Please write email"
@@ -72,28 +123,28 @@ class _LoginScreenState extends State<LoginScreen> {
                                         hintText: "email...",
                                         border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                          BorderRadius.circular(30),
                                           borderSide: BorderSide(
                                             color: Colors.white60,
                                           ),
                                         ),
                                         enabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                          BorderRadius.circular(30),
                                           borderSide: BorderSide(
                                             color: Colors.white60,
                                           ),
                                         ),
                                         focusedBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                          BorderRadius.circular(30),
                                           borderSide: BorderSide(
                                             color: Colors.white60,
                                           ),
                                         ),
                                         disabledBorder: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30),
+                                          BorderRadius.circular(30),
                                           borderSide: BorderSide(
                                             color: Colors.white60,
                                           ),
@@ -110,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       height: 18,
                                     ),
                                     Obx(
-                                      () => TextFormField(
+                                          () => TextFormField(
                                         controller: passController,
                                         obscureText: isObSecure.value,
                                         validator: (value) => value == ""
@@ -122,10 +173,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                             color: Colors.black,
                                           ),
                                           suffixIcon: Obx(
-                                            () => GestureDetector(
+                                                () => GestureDetector(
                                               onTap: () {
                                                 isObSecure.value =
-                                                    !isObSecure.value;
+                                                !isObSecure.value;
                                               },
                                               child: Icon(
                                                 isObSecure.value
@@ -138,28 +189,28 @@ class _LoginScreenState extends State<LoginScreen> {
                                           hintText: "password...",
                                           border: OutlineInputBorder(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                            BorderRadius.circular(30),
                                             borderSide: BorderSide(
                                               color: Colors.white60,
                                             ),
                                           ),
                                           enabledBorder: OutlineInputBorder(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                            BorderRadius.circular(30),
                                             borderSide: BorderSide(
                                               color: Colors.white60,
                                             ),
                                           ),
                                           focusedBorder: OutlineInputBorder(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                            BorderRadius.circular(30),
                                             borderSide: BorderSide(
                                               color: Colors.white60,
                                             ),
                                           ),
                                           disabledBorder: OutlineInputBorder(
                                             borderRadius:
-                                                BorderRadius.circular(30),
+                                            BorderRadius.circular(30),
                                             borderSide: BorderSide(
                                               color: Colors.white60,
                                             ),
@@ -188,7 +239,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                             horizontal: 28,
                                           ),
                                           child: Text(
-                                            "Login",
+                                            "Register",
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 16,
@@ -204,33 +255,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text("Dont't have an Account?"),
+                                  const Text("Already have an Account?"),
                                   TextButton(
                                     onPressed: () {
-                                      Get.to(SignUpScreen());
+                                      Get.to(LoginScreen());
                                     },
                                     child: Text(
-                                      "Register Here",
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                "Or",
-                                style:
-                                    TextStyle(color: Colors.grey, fontSize: 16),
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("Are you an Admin?"),
-                                  TextButton(
-                                    onPressed: () {},
-                                    child: Text(
-                                      "Click Here",
+                                      "Login Here",
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 16),
